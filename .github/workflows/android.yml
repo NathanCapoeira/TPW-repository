@@ -20,7 +20,9 @@ jobs:
       - name: Compilar APK
         working-directory: webings_android
         run: |
-          buildozer -v android debug
+          # O SDK Manager solicita aceite interativo de licencas em CI.
+          # Alimenta as respostas sem mascarar falhas do Buildozer.
+          yes | buildozer -v android debug
       - name: Disponibilizar APK
         if: success()
         uses: actions/upload-artifact@v4
