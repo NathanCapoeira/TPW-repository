@@ -1,0 +1,30 @@
+name: Gerar APK Android
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Obter codigo
+        uses: actions/checkout@v4
+      - name: Dependencias de compilacao
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip python3-venv autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo6 cmake libffi-dev libssl-dev automake
+      - name: Instalar Buildozer
+        run: |
+          python3 -m pip install --user --upgrade buildozer cython==0.29.34
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - name: Compilar APK
+        working-directory: webings_android
+        run: |
+          buildozer -v android debug
+      - name: Disponibilizar APK
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: The-Path-Of-Webings-Android
+          path: webings_android/bin/*.apk
+          if-no-files-found: error
