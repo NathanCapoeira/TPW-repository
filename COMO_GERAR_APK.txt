@@ -1,0 +1,7 @@
+ESTE PACOTE AINDA NAO E UM APK. E UM PROJETO PRONTO PARA TENTAR COMPILAR NO GITHUB ACTIONS.
+1. Crie um repositorio GitHub vazio.
+2. Envie o CONTEUDO desta pasta para a raiz do repositorio (incluindo .github/workflows/android-apk.yml).
+3. Abra Actions > Gerar APK Android > Run workflow.
+4. Aguarde a compilacao. Se funcionar, baixe o artifact The-Path-Of-Webings-APK.
+5. Extraia o ZIP do artifact e envie o arquivo .apk para o celular Android.
+ATENCAO: A compilacao nao foi executada neste ambiente. Erros de build podem exigir ajustes.
